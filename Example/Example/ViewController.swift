@@ -33,9 +33,10 @@ class ViewController: UIViewController {
         
         tagLabel.onSelectedHandler = { [weak self] (tag) in
             print("tag : \(tag.title)")
+            
+            self?.tagLabel.removeAll()
+            self?.tagLabel.refresh()
         }
-        
-        tagLabel.text = "테스트1232j13kj12l3j2l1kj3l12kj3l1j3l2k13l21j3l"
         
         tagLabel.add(KUITag(title: "테스트", config: config))
         tagLabel.add(KUITag(title: "테스트1", config: config))
