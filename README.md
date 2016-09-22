@@ -33,17 +33,6 @@ tagLabel.refresh()
 
 ```
 
-#### CustomView
-```Swift 
-class CustomView: UIView, KUIActionSheetItemViewProtocol {
-    
-    func ... () {
-      actionSheet?.dismiss()
-    }
-}
-
-```
-
 ## Authors
 
 Taeun Kim (kofktu), <kofktu@gmail.com>
