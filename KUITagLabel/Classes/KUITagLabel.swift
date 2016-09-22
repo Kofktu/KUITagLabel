@@ -64,23 +64,12 @@ public struct KUITagConfig {
     }
 }
 
-public class KUITagListView: UIView {
+public class KUITagLabel: UILabel {
 
-    public var autoRefresh = false
-    public var lineSpacing: CGFloat = 3.0
+    @IBInspectable public var autoRefresh = false
+    @IBInspectable public var lineSpacing: CGFloat = 3.0
     public var onSelectedHandler: ((KUITag) -> Void)?
-    
     private(set) var tags = [KUITag]()
-    private lazy var tagLabel: UILabel = {
-        let label = UILabel(frame: self.bounds)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .ByWordWrapping
-        label.textAlignment = .Left
-        label.backgroundColor = UIColor.clearColor()
-        label.userInteractionEnabled = false
-        return label
-    }()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -136,26 +125,23 @@ public class KUITagListView: UIView {
                 attr.appendAttributedString(NSAttributedString(attachment: attachment))
             }
             
-            view.removeFromSuperview()
+//            view.removeFromSuperview()
         }
         
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpacing
         attr.addAttributes([NSParagraphStyleAttributeName: style], range: NSMakeRange(0, attr.length))
-        tagLabel.attributedText = attr
+        attributedText = attr
     }
     
     // MARK: - Private
     private func setup() {
+        backgroundColor = UIColor.clearColor()
         userInteractionEnabled = true
-        
-        addSubview(tagLabel)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["label": tagLabel]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["label": tagLabel]))
-        
-        tagLabel.layer.borderWidth = 1.0
-        tagLabel.layer.borderColor = UIColor.blueColor().CGColor
-        
+        numberOfLines = 0
+        lineBreakMode = .ByWordWrapping
+        textAlignment = .Left
+
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(singleTap(_:)))
         singleTap.numberOfTapsRequired = 1
         singleTap.numberOfTouchesRequired = 1
@@ -169,11 +155,11 @@ public class KUITagListView: UIView {
     
     // MARK: - Actions
     func singleTap(gesture: UITapGestureRecognizer) {
-        guard let attr = tagLabel.attributedText else { return }
-        let container = NSTextContainer(size: tagLabel.frame.size)
+        guard let attr = attributedText else { return }
+        let container = NSTextContainer(size: frame.size)
         container.lineFragmentPadding = 0.0
-        container.lineBreakMode = tagLabel.lineBreakMode
-        container.maximumNumberOfLines = tagLabel.numberOfLines
+        container.lineBreakMode = lineBreakMode
+        container.maximumNumberOfLines = numberOfLines
         
         let manager = NSLayoutManager()
         manager.addTextContainer(container)
