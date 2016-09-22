@@ -96,6 +96,11 @@ public class KUITagLabel: UILabel {
         refreshIfNeeded()
     }
     
+    public func removeAll() {
+        tags.removeAll()
+        refreshIfNeeded()
+    }
+    
     public func refresh() {
         let attr = NSMutableAttributedString()
         let cell = UITableViewCell()
