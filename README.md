@@ -1,7 +1,7 @@
 # KUITagLabel
 > TagLabel support for Dynimc height
 
-![alt tag](Screenshot/Sample.png)
+![alt tag](ScreenShot/Sample.png)
 
 ## Example
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
