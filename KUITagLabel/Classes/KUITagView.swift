@@ -19,7 +19,7 @@ public class KUITagView: UIView {
     }()
     
     private lazy var backgroundImgView: UIImageView = {
-        let imgView: UIImageView = UIImageView(frame: self.bounds)
+        let imgView = UIImageView(frame: self.bounds)
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.backgroundColor = UIColor.clearColor()
         return imgView

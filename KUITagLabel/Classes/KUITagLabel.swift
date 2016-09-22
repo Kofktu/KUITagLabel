@@ -28,9 +28,6 @@ public struct KUITag: Equatable {
 }
 
 public struct KUITagConfig {
-    // common
-    var insets: UIEdgeInsets
-    
     // title
     var titleColor: UIColor
     var titleFont: UIFont
@@ -43,8 +40,7 @@ public struct KUITagConfig {
     var borderColor: UIColor?
     var backgroundImage: UIImage?
     
-    public init(insets: UIEdgeInsets = UIEdgeInsetsZero,
-                titleColor: UIColor,
+    public init(titleColor: UIColor,
                 titleFont: UIFont,
                 titleInsets: UIEdgeInsets = UIEdgeInsetsZero,
                 backgroundColor: UIColor? = nil,
@@ -52,7 +48,6 @@ public struct KUITagConfig {
                 borderWidth: CGFloat = 0.0,
                 borderColor: UIColor? = nil,
                 backgroundImage: UIImage? = nil) {
-        self.insets = insets
         self.titleColor = titleColor
         self.titleFont = titleFont
         self.titleInsets = titleInsets
@@ -64,29 +59,18 @@ public struct KUITagConfig {
     }
 }
 
-public class KUITagListView: UIView {
+public class KUITagLabel: UILabel {
 
-    public var autoRefresh = false
-    public var lineSpacing: CGFloat = 3.0
+    @IBInspectable public var autoRefresh = false
+    @IBInspectable public var lineSpace: CGFloat = 3.0
     public var onSelectedHandler: ((KUITag) -> Void)?
-    
     private(set) var tags = [KUITag]()
-    private lazy var tagLabel: UILabel = {
-        let label = UILabel(frame: self.bounds)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .ByWordWrapping
-        label.textAlignment = .Left
-        label.backgroundColor = UIColor.clearColor()
-        label.userInteractionEnabled = false
-        return label
-    }()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -95,7 +79,7 @@ public class KUITagListView: UIView {
         super.awakeFromNib()
         setup()
     }
-    
+
     // MARK: - Public
     public func add(tag: KUITag) {
         tags.append(tag)
@@ -125,43 +109,39 @@ public class KUITagListView: UIView {
             cell.contentView.layoutIfNeeded()
             
             let size = view.fittingSize()
-            view.frame = CGRect(x: tag.config.insets.left,
-                                y: tag.config.insets.top,
-                                width: size.width + (tag.config.insets.left + tag.config.insets.right),
-                                height: size.height + (tag.config.insets.top + tag.config.insets.bottom))
+            view.frame = CGRect(x: 0.0,
+                                y: 0.0,
+                                width: size.width,
+                                height: size.height)
             
             if let image = view.image() {
                 let attachment = NSTextAttachment()
                 attachment.image = image
                 attr.appendAttributedString(NSAttributedString(attachment: attachment))
+                attr.appendAttributedString(NSAttributedString(string: " "))
             }
-            
-            view.removeFromSuperview()
         }
         
         let style = NSMutableParagraphStyle()
-        style.lineSpacing = lineSpacing
+        style.lineSpacing = lineSpace
         attr.addAttributes([NSParagraphStyleAttributeName: style], range: NSMakeRange(0, attr.length))
-        tagLabel.attributedText = attr
+        attributedText = attr
     }
     
     // MARK: - Private
     private func setup() {
+        backgroundColor = UIColor.clearColor()
         userInteractionEnabled = true
-        
-        addSubview(tagLabel)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["label": tagLabel]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["label": tagLabel]))
-        
-        tagLabel.layer.borderWidth = 1.0
-        tagLabel.layer.borderColor = UIColor.blueColor().CGColor
-        
+        numberOfLines = 0
+        lineBreakMode = .ByWordWrapping
+        textAlignment = .Left
+
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(singleTap(_:)))
         singleTap.numberOfTapsRequired = 1
         singleTap.numberOfTouchesRequired = 1
         addGestureRecognizer(singleTap)
     }
-    
+
     private func refreshIfNeeded() {
         guard autoRefresh else { return }
         refresh()
@@ -169,11 +149,11 @@ public class KUITagListView: UIView {
     
     // MARK: - Actions
     func singleTap(gesture: UITapGestureRecognizer) {
-        guard let attr = tagLabel.attributedText else { return }
-        let container = NSTextContainer(size: tagLabel.frame.size)
+        guard let attr = attributedText else { return }
+        let container = NSTextContainer(size: frame.size)
         container.lineFragmentPadding = 0.0
-        container.lineBreakMode = tagLabel.lineBreakMode
-        container.maximumNumberOfLines = tagLabel.numberOfLines
+        container.lineBreakMode = lineBreakMode
+        container.maximumNumberOfLines = numberOfLines
         
         let manager = NSLayoutManager()
         manager.addTextContainer(container)
@@ -186,14 +166,14 @@ public class KUITagListView: UIView {
                                                    inTextContainer: container,
                                                    fractionOfDistanceBetweenInsertionPoints: nil)
         
-        guard index > 0 && index < storage.length else { return }
+        guard index >= 0 && index < storage.length else { return }
         
         let glyphRange = manager.glyphRangeForCharacterRange(NSMakeRange(index, 1), actualCharacterRange: nil)
         let boundingRect = manager.boundingRectForGlyphRange(glyphRange, inTextContainer: container)
         
         guard CGRectContainsPoint(boundingRect, location) else { return }
         
-        let selectedTag = tags[index]
+        let selectedTag = tags[index / 2]
         onSelectedHandler?(selectedTag)
     }
 }

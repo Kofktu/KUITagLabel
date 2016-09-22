@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,23 +19,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6D2-s8-YBC" customClass="KUITagListView" customModule="KUITagListView">
-                                <frame key="frameInset" minX="15" minY="35" width="345" height="25"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="kWZ-Kk-hMZ"/>
-                                </constraints>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWT-t6-Hbd" customClass="KUITagLabel" customModule="KUITagLabel">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ko0-hC-uL8">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6D2-s8-YBC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="C4x-O4-Qhx"/>
-                            <constraint firstAttribute="trailing" secondItem="6D2-s8-YBC" secondAttribute="trailing" constant="15" id="eIO-kB-SsR"/>
-                            <constraint firstItem="6D2-s8-YBC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="xam-uN-Pa8"/>
+                            <constraint firstItem="fWT-t6-Hbd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="5Dp-7x-UAc"/>
+                            <constraint firstItem="Ko0-hC-uL8" firstAttribute="centerX" secondItem="fWT-t6-Hbd" secondAttribute="centerX" id="8Ua-RC-fbA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fWT-t6-Hbd" secondAttribute="trailing" constant="10" id="A28-Ut-wBO"/>
+                            <constraint firstItem="Ko0-hC-uL8" firstAttribute="top" secondItem="fWT-t6-Hbd" secondAttribute="bottom" constant="30" id="cv4-N5-AK4"/>
+                            <constraint firstItem="fWT-t6-Hbd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="i2H-rg-Idk"/>
+                            <constraint firstItem="Ko0-hC-uL8" firstAttribute="width" secondItem="fWT-t6-Hbd" secondAttribute="width" id="mY2-PI-cRp"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tagListView" destination="6D2-s8-YBC" id="iuN-p8-fWE"/>
+                        <outlet property="tagLabel" destination="fWT-t6-Hbd" id="MHd-9p-noL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

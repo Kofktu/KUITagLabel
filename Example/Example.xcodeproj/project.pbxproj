@@ -23,12 +23,12 @@
 			remoteGlobalIDString = C373FB311D92BBD700A27FE5;
 			remoteInfo = Example;
 		};
-		C373FB591D92BBDC00A27FE5 /* PBXContainerItemProxy */ = {
+		C3E6930F1D936E5A006B7863 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C373FB551D92BBDC00A27FE5 /* KUITagListView.xcodeproj */;
+			containerPortal = C3E6930B1D936E59006B7863 /* KUITagLabel.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = C373FB1C1D92BB8C00A27FE5;
-			remoteInfo = KUITagListView;
+			remoteGlobalIDString = C3E692FA1D936DFB006B7863;
+			remoteInfo = KUITagLabel;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -43,7 +43,7 @@
 		C373FB461D92BBD700A27FE5 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C373FB4A1D92BBD700A27FE5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		C373FB4C1D92BBD700A27FE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C373FB551D92BBDC00A27FE5 /* KUITagListView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KUITagListView.xcodeproj; path = ../KUITagListView.xcodeproj; sourceTree = "<group>"; };
+		C3E6930B1D936E59006B7863 /* KUITagLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KUITagLabel.xcodeproj; path = ../KUITagLabel.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 		C373FB291D92BBD700A27FE5 = {
 			isa = PBXGroup;
 			children = (
-				C373FB551D92BBDC00A27FE5 /* KUITagListView.xcodeproj */,
+				C3E6930B1D936E59006B7863 /* KUITagLabel.xcodeproj */,
 				C373FB341D92BBD700A27FE5 /* Example */,
 				C373FB491D92BBD700A27FE5 /* ExampleUITests */,
 				C373FB331D92BBD700A27FE5 /* Products */,
@@ -105,10 +105,10 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
-		C373FB561D92BBDC00A27FE5 /* Products */ = {
+		C3E6930C1D936E59006B7863 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C373FB5A1D92BBDC00A27FE5 /* KUITagListView.framework */,
+				C3E693101D936E5A006B7863 /* KUITagLabel.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,8 +185,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C373FB561D92BBDC00A27FE5 /* Products */;
-					ProjectRef = C373FB551D92BBDC00A27FE5 /* KUITagListView.xcodeproj */;
+					ProductGroup = C3E6930C1D936E59006B7863 /* Products */;
+					ProjectRef = C3E6930B1D936E59006B7863 /* KUITagLabel.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -198,11 +198,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C373FB5A1D92BBDC00A27FE5 /* KUITagListView.framework */ = {
+		C3E693101D936E5A006B7863 /* KUITagLabel.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = KUITagListView.framework;
-			remoteRef = C373FB591D92BBDC00A27FE5 /* PBXContainerItemProxy */;
+			path = KUITagLabel.framework;
+			remoteRef = C3E6930F1D936E5A006B7863 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -435,6 +435,7 @@
 				C373FB511D92BBD700A27FE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C373FB521D92BBD700A27FE5 /* Build configuration list for PBXNativeTarget "ExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +444,7 @@
 				C373FB541D92BBD700A27FE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
