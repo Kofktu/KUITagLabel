@@ -45,4 +45,4 @@ Taeun Kim (kofktu), <kofktu@gmail.com>
 
 ## License
 
-KUIActionSheet is available under the ```MIT``` license. See the ```LICENSE``` file for more info.
+KUITagLabel is available under the ```MIT``` license. See the ```LICENSE``` file for more info.
