@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C3B9E4481D934EF2002372FF /* KUITagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B9E4441D934EF2002372FF /* KUITagLabel.swift */; };
-		C3B9E4491D934EF2002372FF /* KUITagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B9E4451D934EF2002372FF /* KUITagView.swift */; };
-		C3B9E44B1D934EF2002372FF /* KUITagLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B9E4471D934EF2002372FF /* KUITagLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E692FF1D936DFB006B7863 /* KUITagLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E692FD1D936DFB006B7863 /* KUITagLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E693081D936E2A006B7863 /* KUITagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E693061D936E2A006B7863 /* KUITagLabel.swift */; };
+		C3E693091D936E2A006B7863 /* KUITagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E693071D936E2A006B7863 /* KUITagView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C373FB1C1D92BB8C00A27FE5 /* KUITagLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KUITagLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3B9E4441D934EF2002372FF /* KUITagLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUITagLabel.swift; sourceTree = "<group>"; };
-		C3B9E4451D934EF2002372FF /* KUITagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUITagView.swift; sourceTree = "<group>"; };
-		C3B9E4461D934EF2002372FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C3B9E4471D934EF2002372FF /* KUITagLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUITagLabel.h; sourceTree = "<group>"; };
+		C3E692FA1D936DFB006B7863 /* KUITagLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KUITagLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3E692FD1D936DFB006B7863 /* KUITagLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KUITagLabel.h; sourceTree = "<group>"; };
+		C3E692FE1D936DFB006B7863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3E693061D936E2A006B7863 /* KUITagLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUITagLabel.swift; sourceTree = "<group>"; };
+		C3E693071D936E2A006B7863 /* KUITagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUITagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C373FB181D92BB8C00A27FE5 /* Frameworks */ = {
+		C3E692F61D936DFB006B7863 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -31,37 +31,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C373FB121D92BB8C00A27FE5 = {
+		C3E692F01D936DFB006B7863 = {
 			isa = PBXGroup;
 			children = (
-				C3B9E4421D934EF2002372FF /* KUITagLabel */,
-				C373FB1D1D92BB8C00A27FE5 /* Products */,
+				C3E692FC1D936DFB006B7863 /* KUITagLabel */,
+				C3E692FB1D936DFB006B7863 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C373FB1D1D92BB8C00A27FE5 /* Products */ = {
+		C3E692FB1D936DFB006B7863 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C373FB1C1D92BB8C00A27FE5 /* KUITagLabel.framework */,
+				C3E692FA1D936DFB006B7863 /* KUITagLabel.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C3B9E4421D934EF2002372FF /* KUITagLabel */ = {
+		C3E692FC1D936DFB006B7863 /* KUITagLabel */ = {
 			isa = PBXGroup;
 			children = (
-				C3B9E4431D934EF2002372FF /* Classes */,
-				C3B9E4461D934EF2002372FF /* Info.plist */,
-				C3B9E4471D934EF2002372FF /* KUITagLabel.h */,
+				C3E693051D936E20006B7863 /* Classes */,
+				C3E692FD1D936DFB006B7863 /* KUITagLabel.h */,
+				C3E692FE1D936DFB006B7863 /* Info.plist */,
 			);
 			path = KUITagLabel;
 			sourceTree = "<group>";
 		};
-		C3B9E4431D934EF2002372FF /* Classes */ = {
+		C3E693051D936E20006B7863 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C3B9E4441D934EF2002372FF /* KUITagLabel.swift */,
-				C3B9E4451D934EF2002372FF /* KUITagView.swift */,
+				C3E693061D936E2A006B7863 /* KUITagLabel.swift */,
+				C3E693071D936E2A006B7863 /* KUITagView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -69,70 +69,70 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C373FB191D92BB8C00A27FE5 /* Headers */ = {
+		C3E692F71D936DFB006B7863 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3B9E44B1D934EF2002372FF /* KUITagLabel.h in Headers */,
+				C3E692FF1D936DFB006B7863 /* KUITagLabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C373FB1B1D92BB8C00A27FE5 /* KUITagLabel */ = {
+		C3E692F91D936DFB006B7863 /* KUITagLabel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C373FB241D92BB8C00A27FE5 /* Build configuration list for PBXNativeTarget "KUITagLabel" */;
+			buildConfigurationList = C3E693021D936DFB006B7863 /* Build configuration list for PBXNativeTarget "KUITagLabel" */;
 			buildPhases = (
-				C373FB171D92BB8C00A27FE5 /* Sources */,
-				C373FB181D92BB8C00A27FE5 /* Frameworks */,
-				C373FB191D92BB8C00A27FE5 /* Headers */,
-				C373FB1A1D92BB8C00A27FE5 /* Resources */,
+				C3E692F51D936DFB006B7863 /* Sources */,
+				C3E692F61D936DFB006B7863 /* Frameworks */,
+				C3E692F71D936DFB006B7863 /* Headers */,
+				C3E692F81D936DFB006B7863 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = KUITagLabel;
-			productName = KUITagListView;
-			productReference = C373FB1C1D92BB8C00A27FE5 /* KUITagLabel.framework */;
+			productName = KUITagLabel;
+			productReference = C3E692FA1D936DFB006B7863 /* KUITagLabel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C373FB131D92BB8C00A27FE5 /* Project object */ = {
+		C3E692F11D936DFB006B7863 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Kofktu;
 				TargetAttributes = {
-					C373FB1B1D92BB8C00A27FE5 = {
+					C3E692F91D936DFB006B7863 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = C373FB161D92BB8C00A27FE5 /* Build configuration list for PBXProject "KUITagLabel" */;
+			buildConfigurationList = C3E692F41D936DFB006B7863 /* Build configuration list for PBXProject "KUITagLabel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = C373FB121D92BB8C00A27FE5;
-			productRefGroup = C373FB1D1D92BB8C00A27FE5 /* Products */;
+			mainGroup = C3E692F01D936DFB006B7863;
+			productRefGroup = C3E692FB1D936DFB006B7863 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C373FB1B1D92BB8C00A27FE5 /* KUITagLabel */,
+				C3E692F91D936DFB006B7863 /* KUITagLabel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C373FB1A1D92BB8C00A27FE5 /* Resources */ = {
+		C3E692F81D936DFB006B7863 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -142,19 +142,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C373FB171D92BB8C00A27FE5 /* Sources */ = {
+		C3E692F51D936DFB006B7863 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3B9E4481D934EF2002372FF /* KUITagLabel.swift in Sources */,
-				C3B9E4491D934EF2002372FF /* KUITagView.swift in Sources */,
+				C3E693081D936E2A006B7863 /* KUITagLabel.swift in Sources */,
+				C3E693091D936E2A006B7863 /* KUITagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		C373FB221D92BB8C00A27FE5 /* Debug */ = {
+		C3E693001D936DFB006B7863 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -207,7 +207,7 @@
 			};
 			name = Debug;
 		};
-		C373FB231D92BB8C00A27FE5 /* Release */ = {
+		C3E693011D936DFB006B7863 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -253,7 +253,7 @@
 			};
 			name = Release;
 		};
-		C373FB251D92BB8C00A27FE5 /* Debug */ = {
+		C3E693031D936DFB006B7863 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -266,7 +266,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kr.homefactory.KUITagLabel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kofktu.KUITagLabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -274,7 +274,7 @@
 			};
 			name = Debug;
 		};
-		C373FB261D92BB8C00A27FE5 /* Release */ = {
+		C3E693041D936DFB006B7863 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -287,7 +287,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kr.homefactory.KUITagLabel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kofktu.KUITagLabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -297,25 +297,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C373FB161D92BB8C00A27FE5 /* Build configuration list for PBXProject "KUITagLabel" */ = {
+		C3E692F41D936DFB006B7863 /* Build configuration list for PBXProject "KUITagLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C373FB221D92BB8C00A27FE5 /* Debug */,
-				C373FB231D92BB8C00A27FE5 /* Release */,
+				C3E693001D936DFB006B7863 /* Debug */,
+				C3E693011D936DFB006B7863 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C373FB241D92BB8C00A27FE5 /* Build configuration list for PBXNativeTarget "KUITagLabel" */ = {
+		C3E693021D936DFB006B7863 /* Build configuration list for PBXNativeTarget "KUITagLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C373FB251D92BB8C00A27FE5 /* Debug */,
-				C373FB261D92BB8C00A27FE5 /* Release */,
+				C3E693031D936DFB006B7863 /* Debug */,
+				C3E693041D936DFB006B7863 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C373FB131D92BB8C00A27FE5 /* Project object */;
+	rootObject = C3E692F11D936DFB006B7863 /* Project object */;
 }

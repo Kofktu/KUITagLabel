@@ -28,9 +28,6 @@ public struct KUITag: Equatable {
 }
 
 public struct KUITagConfig {
-    // common
-    var insets: UIEdgeInsets
-    
     // title
     var titleColor: UIColor
     var titleFont: UIFont
@@ -43,8 +40,7 @@ public struct KUITagConfig {
     var borderColor: UIColor?
     var backgroundImage: UIImage?
     
-    public init(insets: UIEdgeInsets = UIEdgeInsetsZero,
-                titleColor: UIColor,
+    public init(titleColor: UIColor,
                 titleFont: UIFont,
                 titleInsets: UIEdgeInsets = UIEdgeInsetsZero,
                 backgroundColor: UIColor? = nil,
@@ -52,7 +48,6 @@ public struct KUITagConfig {
                 borderWidth: CGFloat = 0.0,
                 borderColor: UIColor? = nil,
                 backgroundImage: UIImage? = nil) {
-        self.insets = insets
         self.titleColor = titleColor
         self.titleFont = titleFont
         self.titleInsets = titleInsets
@@ -67,7 +62,7 @@ public struct KUITagConfig {
 public class KUITagLabel: UILabel {
 
     @IBInspectable public var autoRefresh = false
-    @IBInspectable public var lineSpacing: CGFloat = 3.0
+    @IBInspectable public var lineSpace: CGFloat = 3.0
     public var onSelectedHandler: ((KUITag) -> Void)?
     private(set) var tags = [KUITag]()
     
@@ -75,7 +70,7 @@ public class KUITagLabel: UILabel {
         super.init(frame: frame)
         setup()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -84,7 +79,7 @@ public class KUITagLabel: UILabel {
         super.awakeFromNib()
         setup()
     }
-    
+
     // MARK: - Public
     public func add(tag: KUITag) {
         tags.append(tag)
@@ -114,22 +109,21 @@ public class KUITagLabel: UILabel {
             cell.contentView.layoutIfNeeded()
             
             let size = view.fittingSize()
-            view.frame = CGRect(x: tag.config.insets.left,
-                                y: tag.config.insets.top,
-                                width: size.width + (tag.config.insets.left + tag.config.insets.right),
-                                height: size.height + (tag.config.insets.top + tag.config.insets.bottom))
+            view.frame = CGRect(x: 0.0,
+                                y: 0.0,
+                                width: size.width,
+                                height: size.height)
             
             if let image = view.image() {
                 let attachment = NSTextAttachment()
                 attachment.image = image
                 attr.appendAttributedString(NSAttributedString(attachment: attachment))
+                attr.appendAttributedString(NSAttributedString(string: " "))
             }
-            
-//            view.removeFromSuperview()
         }
         
         let style = NSMutableParagraphStyle()
-        style.lineSpacing = lineSpacing
+        style.lineSpacing = lineSpace
         attr.addAttributes([NSParagraphStyleAttributeName: style], range: NSMakeRange(0, attr.length))
         attributedText = attr
     }
@@ -147,7 +141,7 @@ public class KUITagLabel: UILabel {
         singleTap.numberOfTouchesRequired = 1
         addGestureRecognizer(singleTap)
     }
-    
+
     private func refreshIfNeeded() {
         guard autoRefresh else { return }
         refresh()
@@ -172,14 +166,14 @@ public class KUITagLabel: UILabel {
                                                    inTextContainer: container,
                                                    fractionOfDistanceBetweenInsertionPoints: nil)
         
-        guard index > 0 && index < storage.length else { return }
+        guard index >= 0 && index < storage.length else { return }
         
         let glyphRange = manager.glyphRangeForCharacterRange(NSMakeRange(index, 1), actualCharacterRange: nil)
         let boundingRect = manager.boundingRectForGlyphRange(glyphRange, inTextContainer: container)
         
         guard CGRectContainsPoint(boundingRect, location) else { return }
         
-        let selectedTag = tags[index]
+        let selectedTag = tags[index / 2]
         onSelectedHandler?(selectedTag)
     }
 }

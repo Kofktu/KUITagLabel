@@ -17,16 +17,25 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let config = KUITagConfig(insets: UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0),
-                                  titleColor: UIColor.blueColor(),
-                                  titleFont: UIFont.systemFontOfSize(15.0),
-                                  backgroundColor: UIColor.yellowColor())
+        let config = KUITagConfig(titleColor: UIColor.magentaColor(),
+                                  titleFont: UIFont.boldSystemFontOfSize(15.0),
+                                  titleInsets: UIEdgeInsets(top: 2.0, left: 6.0, bottom: 2.0, right: 6.0),
+                                  backgroundColor: UIColor.yellowColor(),
+                                  cornerRadius: 4.0,
+                                  borderWidth: 0.0,
+                                  borderColor: nil,
+                                  backgroundImage: nil)
+        
+//        let config = KUITagConfig(titleColor: UIColor.blueColor(),
+//                                  titleFont: UIFont.systemFontOfSize(15.0),
+//                                  backgroundColor: UIColor.yellowColor())
+//
         
         tagLabel.onSelectedHandler = { [weak self] (tag) in
             print("tag : \(tag.title)")
         }
         
-//        tagLabel.text = "테스트1232j13kj12l3j2l1kj3l12kj3l1j3l2k13l21j3l"
+        tagLabel.text = "테스트1232j13kj12l3j2l1kj3l12kj3l1j3l2k13l21j3l"
         
         tagLabel.add(KUITag(title: "테스트", config: config))
         tagLabel.add(KUITag(title: "테스트1", config: config))
@@ -50,24 +59,17 @@ class ViewController: UIViewController {
         tagLabel.add(KUITag(title: "테스트1", config: config))
         tagLabel.add(KUITag(title: "테스트", config: config))
         tagLabel.add(KUITag(title: "테스트1", config: config))
-//        tagLabel.add(KUITag(title: "테스트", config: config))
-//        tagLabel.add(KUITag(title: "테스트1", config: config))
-//        tagLabel.add(KUITag(title: "테스트", config: config))
-//        tagLabel.add(KUITag(title: "테스트1", config: config))
-//        tagLabel.add(KUITag(title: "테스트", config: config))
-//        tagLabel.add(KUITag(title: "테스트1", config: config))
-//        tagLabel.add(KUITag(title: "테스트", config: config))
-//        tagLabel.add(KUITag(title: "테스트1", config: config))
-//        tagLabel.add(KUITag(title: "테스트", config: config))
-//        tagLabel.add(KUITag(title: "테스트1", config: config))
+        tagLabel.add(KUITag(title: "테스트", config: config))
+        tagLabel.add(KUITag(title: "테스트1", config: config))
+        tagLabel.add(KUITag(title: "테스트", config: config))
+        tagLabel.add(KUITag(title: "테스트1", config: config))
+        tagLabel.add(KUITag(title: "테스트", config: config))
+        tagLabel.add(KUITag(title: "테스트1", config: config))
+        tagLabel.add(KUITag(title: "테스트", config: config))
+        tagLabel.add(KUITag(title: "테스트1", config: config))
+        tagLabel.add(KUITag(title: "테스트", config: config))
+        tagLabel.add(KUITag(title: "테스트1", config: config))
         tagLabel.refresh()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-
