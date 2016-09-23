@@ -64,7 +64,7 @@ public class KUITagLabel: UILabel {
     @IBInspectable public var autoRefresh = false
     @IBInspectable public var lineSpace: CGFloat = 3.0
     public var onSelectedHandler: ((KUITag) -> Void)?
-    private(set) var tags = [KUITag]()
+    private(set) public var tags = [KUITag]()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
