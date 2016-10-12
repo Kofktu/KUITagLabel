@@ -60,7 +60,7 @@ public struct KUITagConfig {
 }
 
 public class KUITagLabel: UILabel {
-
+    
     @IBInspectable public var autoRefresh = false
     @IBInspectable public var lineSpace: CGFloat = 3.0
     public var onSelectedHandler: ((KUITag) -> Void)?
@@ -70,7 +70,7 @@ public class KUITagLabel: UILabel {
         super.init(frame: frame)
         setup()
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -79,7 +79,7 @@ public class KUITagLabel: UILabel {
         super.awakeFromNib()
         setup()
     }
-
+    
     // MARK: - Public
     public func add(tag: KUITag) {
         tags.append(tag)
@@ -140,23 +140,25 @@ public class KUITagLabel: UILabel {
         numberOfLines = 0
         lineBreakMode = .ByWordWrapping
         textAlignment = .Left
-
+        
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(singleTap(_:)))
         singleTap.numberOfTapsRequired = 1
         singleTap.numberOfTouchesRequired = 1
         addGestureRecognizer(singleTap)
     }
-
+    
     private func refreshIfNeeded() {
         guard autoRefresh else { return }
         refresh()
     }
-    
+    // CocoaPods 으로 올릴것!
     // MARK: - Actions
     func singleTap(gesture: UITapGestureRecognizer) {
-        guard let attr = attributedText else { return }
+        guard let attr = attributedText where attr.length > 0 else { return }
+        
+        var location = gesture.locationInView(self)
+        
         let container = NSTextContainer(size: frame.size)
-        container.lineFragmentPadding = 0.0
         container.lineBreakMode = lineBreakMode
         container.maximumNumberOfLines = numberOfLines
         
@@ -166,19 +168,31 @@ public class KUITagLabel: UILabel {
         let storage = NSTextStorage(attributedString: attr)
         storage.addLayoutManager(manager)
         
-        let location = gesture.locationInView(self)
-        let index = manager.characterIndexForPoint(location,
-                                                   inTextContainer: container,
-                                                   fractionOfDistanceBetweenInsertionPoints: nil)
+        let glyphRange = manager.glyphRangeForTextContainer(container)
+        let textBounds = manager.boundingRectForGlyphRange(glyphRange, inTextContainer: container)
+        let paddingHeight = (CGRectGetHeight(bounds) - CGRectGetHeight(textBounds)) / 2.0
+        var textOffset = CGPointZero
         
-        guard index >= 0 && index < storage.length else { return }
+        if paddingHeight > 0.0 {
+            textOffset.y = paddingHeight
+        }
         
-        let glyphRange = manager.glyphRangeForCharacterRange(NSMakeRange(index, 1), actualCharacterRange: nil)
-        let boundingRect = manager.boundingRectForGlyphRange(glyphRange, inTextContainer: container)
+        // // Get the touch location and use text offset to convert to text cotainer coords
+        location.x -= textOffset.x
+        location.y -= textOffset.y
         
-        guard CGRectContainsPoint(boundingRect, location) else { return }
+        var lineRange = NSRange()
+        let glyphIndex = manager.glyphIndexForPoint(location, inTextContainer: container)
+        var lineRect = manager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: &lineRange)
         
-        let selectedTag = tags[index / 2]
+        //Adjustment to increase tap area
+        lineRect.size.height = 60.0
+        
+        guard CGRectContainsPoint(lineRect, location) else { return }
+        let characterIndex = manager.characterIndexForGlyphAtIndex(glyphIndex)
+        
+        
+        let selectedTag = tags[characterIndex / 2]
         onSelectedHandler?(selectedTag)
     }
 }
