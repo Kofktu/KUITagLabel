@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KUITagLabel"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "TagLabel support for Dynamic Height"
 
   # This description is used to generate tags and improve search results.
