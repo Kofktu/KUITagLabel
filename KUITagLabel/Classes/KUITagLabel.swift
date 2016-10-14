@@ -28,6 +28,9 @@ public struct KUITag: Equatable {
 }
 
 public struct KUITagConfig {
+    // content
+    var insets: UIEdgeInsets
+    
     // title
     var titleColor: UIColor
     var titleFont: UIFont
@@ -40,7 +43,8 @@ public struct KUITagConfig {
     var borderColor: UIColor?
     var backgroundImage: UIImage?
     
-    public init(titleColor: UIColor,
+    public init(insets: UIEdgeInsets = UIEdgeInsetsZero,
+                titleColor: UIColor,
                 titleFont: UIFont,
                 titleInsets: UIEdgeInsets = UIEdgeInsetsZero,
                 backgroundColor: UIColor? = nil,
@@ -48,6 +52,7 @@ public struct KUITagConfig {
                 borderWidth: CGFloat = 0.0,
                 borderColor: UIColor? = nil,
                 backgroundImage: UIImage? = nil) {
+        self.insets = insets
         self.titleColor = titleColor
         self.titleFont = titleFont
         self.titleInsets = titleInsets
@@ -123,7 +128,6 @@ public class KUITagLabel: UILabel {
                 let attachment = NSTextAttachment()
                 attachment.image = image
                 attr.appendAttributedString(NSAttributedString(attachment: attachment))
-                attr.appendAttributedString(NSAttributedString(string: " "))
             }
         }
         
@@ -151,7 +155,7 @@ public class KUITagLabel: UILabel {
         guard autoRefresh else { return }
         refresh()
     }
-    // CocoaPods 으로 올릴것!
+    
     // MARK: - Actions
     func singleTap(gesture: UITapGestureRecognizer) {
         guard let attr = attributedText where attr.length > 0 else { return }
@@ -159,6 +163,7 @@ public class KUITagLabel: UILabel {
         var location = gesture.locationInView(self)
         
         let container = NSTextContainer(size: frame.size)
+        container.lineFragmentPadding = 0;
         container.lineBreakMode = lineBreakMode
         container.maximumNumberOfLines = numberOfLines
         
@@ -192,7 +197,7 @@ public class KUITagLabel: UILabel {
         let characterIndex = manager.characterIndexForGlyphAtIndex(glyphIndex)
         
         
-        let selectedTag = tags[characterIndex / 2]
+        let selectedTag = tags[characterIndex]
         onSelectedHandler?(selectedTag)
     }
 }
