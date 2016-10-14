@@ -9,7 +9,14 @@
 import UIKit
 
 public class KUITagView: UIView {
-
+    
+    private lazy var contentView: UIView = {
+        let contentView = UIView(frame: self.bounds)
+        contentView.clipsToBounds = true
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+    
     private lazy var label: UILabel = {
         let label = UILabel(frame: self.bounds)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,38 +34,42 @@ public class KUITagView: UIView {
     
     // MARK: - Public
     public func configure(tag: KUITag) {
-        clipsToBounds = true
-        backgroundColor = tag.config.backgroundColor ?? UIColor.whiteColor()
-        
-        layer.cornerRadius = tag.config.cornerRadius
-        layer.borderColor = tag.config.borderColor?.CGColor
-        layer.borderWidth = tag.config.borderWidth
+        backgroundColor = UIColor.clearColor()
         
         backgroundImgView.removeFromSuperview()
         label.removeFromSuperview()
+        contentView.removeFromSuperview()
+        
+        contentView.backgroundColor = tag.config.backgroundColor ?? UIColor.whiteColor()
+        contentView.layer.cornerRadius = tag.config.cornerRadius
+        contentView.layer.borderColor = tag.config.borderColor?.CGColor
+        contentView.layer.borderWidth = tag.config.borderWidth
+        addSubview(contentView)
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-\(tag.config.insets.left)-[view]-\(tag.config.insets.right)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": contentView]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(tag.config.insets.top)-[view]-\(tag.config.insets.bottom)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": contentView]))
         
         if let backgroundImage = tag.config.backgroundImage {
             backgroundImgView.image = backgroundImage
-            addSubview(backgroundImgView)
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            contentView.addSubview(backgroundImgView)
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
                 "H:|-0-[view]-0-|",
                 options: .DirectionLeadingToTrailing,
                 metrics: nil,
                 views: ["view": backgroundImgView]))
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
                 "V:|-0-[view]-0-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: nil,
                 views: ["view": backgroundImgView]))
         }
         
-        addSubview(label)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+        contentView.addSubview(label)
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-\(tag.config.titleInsets.left)-[label]-\(tag.config.titleInsets.right)-|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
             views: ["label": label]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|-\(tag.config.titleInsets.top)-[label]-\(tag.config.titleInsets.bottom)-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
@@ -66,7 +77,7 @@ public class KUITagView: UIView {
         
         if let style = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as? NSMutableParagraphStyle {
             style.alignment = .Center
-
+            
             let attr = NSAttributedString(string: tag.title,
                                           attributes: [NSParagraphStyleAttributeName: style, NSFontAttributeName: tag.config.titleFont, NSForegroundColorAttributeName: tag.config.titleColor])
             label.attributedText = attr
