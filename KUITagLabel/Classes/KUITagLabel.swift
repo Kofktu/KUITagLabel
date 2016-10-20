@@ -69,6 +69,7 @@ public class KUITagLabel: UILabel {
     @IBInspectable public var autoRefresh = false
     @IBInspectable public var lineSpace: CGFloat = 3.0
     public var onSelectedHandler: ((KUITag) -> Void)?
+    public var onTouchEmptySpaceHandler: (() -> Void)?
     private(set) public var tags = [KUITag]()
     
     public override init(frame: CGRect) {
@@ -156,11 +157,8 @@ public class KUITagLabel: UILabel {
         refresh()
     }
     
-    // MARK: - Actions
-    func singleTap(gesture: UITapGestureRecognizer) {
-        guard let attr = attributedText where attr.length > 0 else { return }
-        
-        var location = gesture.locationInView(self)
+    private func characterIndex(location: CGPoint) -> Int? {
+        guard let attr = attributedText where attr.length > 0 else { return nil }
         
         let container = NSTextContainer(size: frame.size)
         container.lineFragmentPadding = 0;
@@ -183,21 +181,28 @@ public class KUITagLabel: UILabel {
         }
         
         // // Get the touch location and use text offset to convert to text cotainer coords
-        location.x -= textOffset.x
-        location.y -= textOffset.y
+        var newLocation = location
+        newLocation.x -= textOffset.x
+        newLocation.y -= textOffset.y
         
         var lineRange = NSRange()
-        let glyphIndex = manager.glyphIndexForPoint(location, inTextContainer: container)
+        let glyphIndex = manager.glyphIndexForPoint(newLocation, inTextContainer: container)
         var lineRect = manager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: &lineRange)
         
         //Adjustment to increase tap area
         lineRect.size.height = 60.0
         
-        guard CGRectContainsPoint(lineRect, location) else { return }
-        let characterIndex = manager.characterIndexForGlyphAtIndex(glyphIndex)
+        guard CGRectContainsPoint(lineRect, newLocation) else { return nil }
+        return manager.characterIndexForGlyphAtIndex(glyphIndex)
+    }
+    
+    // MARK: - Actions
+    func singleTap(gesture: UITapGestureRecognizer) {
+        guard let characterIndex = characterIndex(gesture.locationInView(self)) else {
+            onTouchEmptySpaceHandler?()
+            return
+        }
         
-        
-        let selectedTag = tags[characterIndex]
-        onSelectedHandler?(selectedTag)
+        onSelectedHandler?(tags[characterIndex])
     }
 }
