@@ -40,6 +40,10 @@ class ViewController: UIViewController {
             }
         }
         
+        tagLabel.onTouchEmptySpaceHandler = { [weak self] () in
+            print("empty")
+        }
+        
         tagLabel.add(KUITag(title: "#테스트", config: config))
         tagLabel.add(KUITag(title: "#테스트1", config: config))
         tagLabel.add(KUITag(title: "#테스트2", config: config))
@@ -51,6 +55,7 @@ class ViewController: UIViewController {
         tagLabel.add(KUITag(title: "#테스트8", config: config))
         tagLabel.add(KUITag(title: "#테스트9", config: config))
         tagLabel.add(KUITag(title: "#테스트10", config: config))
+        tagLabel.add(KUITag(title: "#테스트11", config: config))
         tagLabel.add(KUITag(title: "#clean", config: config))
         tagLabel.refresh()
     }
