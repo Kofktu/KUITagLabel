@@ -43,10 +43,10 @@ public struct KUITagConfig {
     var borderColor: UIColor?
     var backgroundImage: UIImage?
     
-    public init(insets: UIEdgeInsets = UIEdgeInsetsZero,
+    public init(insets: UIEdgeInsets = UIEdgeInsets.zero,
                 titleColor: UIColor,
                 titleFont: UIFont,
-                titleInsets: UIEdgeInsets = UIEdgeInsetsZero,
+                titleInsets: UIEdgeInsets = UIEdgeInsets.zero,
                 backgroundColor: UIColor? = nil,
                 cornerRadius: CGFloat = 0.0,
                 borderWidth: CGFloat = 0.0,
@@ -64,7 +64,7 @@ public struct KUITagConfig {
     }
 }
 
-public class KUITagLabel: UILabel {
+open class KUITagLabel: UILabel {
     
     @IBInspectable public var autoRefresh = false
     @IBInspectable public var lineSpace: CGFloat = 3.0
@@ -81,33 +81,33 @@ public class KUITagLabel: UILabel {
         super.init(coder: aDecoder)
     }
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
     
     // MARK: - Public
-    public func add(tag: KUITag) {
+    open func add(tag: KUITag) {
         tags.append(tag)
         refreshIfNeeded()
     }
     
-    public func remove(tag: KUITag) {
-        guard let index = tags.indexOf(tag) else { return }
+    open func remove(tag: KUITag) {
+        guard let index = tags.index(of: tag) else { return }
         remove(at: index)
     }
     
-    public func remove(at index: Int) {
-        tags.removeAtIndex(index)
+    open func remove(at index: Int) {
+        tags.remove(at: index)
         refreshIfNeeded()
     }
     
-    public func removeAll() {
+    open func removeAll() {
         tags.removeAll()
         refreshIfNeeded()
     }
     
-    public func refresh() {
+    open func refresh() {
         let attr = NSMutableAttributedString()
         let cell = UITableViewCell()
         
@@ -128,7 +128,7 @@ public class KUITagLabel: UILabel {
             if let image = view.image() {
                 let attachment = NSTextAttachment()
                 attachment.image = image
-                attr.appendAttributedString(NSAttributedString(attachment: attachment))
+                attr.append(NSAttributedString(attachment: attachment))
             }
         }
         
@@ -139,12 +139,12 @@ public class KUITagLabel: UILabel {
     }
     
     // MARK: - Private
-    private func setup() {
-        backgroundColor = UIColor.clearColor()
-        userInteractionEnabled = true
+    fileprivate func setup() {
+        backgroundColor = UIColor.clear
+        isUserInteractionEnabled = true
         numberOfLines = 0
-        lineBreakMode = .ByWordWrapping
-        textAlignment = .Left
+        lineBreakMode = .byWordWrapping
+        textAlignment = .left
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(singleTap(_:)))
         singleTap.numberOfTapsRequired = 1
@@ -152,13 +152,13 @@ public class KUITagLabel: UILabel {
         addGestureRecognizer(singleTap)
     }
     
-    private func refreshIfNeeded() {
+    fileprivate func refreshIfNeeded() {
         guard autoRefresh else { return }
         refresh()
     }
     
-    private func characterIndex(location: CGPoint) -> Int? {
-        guard let attr = attributedText where attr.length > 0 else { return nil }
+    fileprivate func characterIndex(location: CGPoint) -> Int? {
+        guard let attr = attributedText, attr.length > 0 else { return nil }
         
         let container = NSTextContainer(size: frame.size)
         container.lineFragmentPadding = 0;
@@ -171,10 +171,10 @@ public class KUITagLabel: UILabel {
         let storage = NSTextStorage(attributedString: attr)
         storage.addLayoutManager(manager)
         
-        let glyphRange = manager.glyphRangeForTextContainer(container)
-        let textBounds = manager.boundingRectForGlyphRange(glyphRange, inTextContainer: container)
-        let paddingHeight = (CGRectGetHeight(bounds) - CGRectGetHeight(textBounds)) / 2.0
-        var textOffset = CGPointZero
+        let glyphRange = manager.glyphRange(for: container)
+        let textBounds = manager.boundingRect(forGlyphRange: glyphRange, in: container)
+        let paddingHeight = (bounds.size.height - textBounds.size.height) / 2.0
+        var textOffset = CGPoint.zero
         
         if paddingHeight > 0.0 {
             textOffset.y = paddingHeight
@@ -186,19 +186,19 @@ public class KUITagLabel: UILabel {
         newLocation.y -= textOffset.y
         
         var lineRange = NSRange()
-        let glyphIndex = manager.glyphIndexForPoint(newLocation, inTextContainer: container)
-        var lineRect = manager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: &lineRange)
+        let glyphIndex = manager.glyphIndex(for: newLocation, in: container)
+        var lineRect = manager.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: &lineRange)
         
         //Adjustment to increase tap area
         lineRect.size.height = 60.0
         
-        guard CGRectContainsPoint(lineRect, newLocation) else { return nil }
-        return manager.characterIndexForGlyphAtIndex(glyphIndex)
+        guard lineRect.contains(newLocation) else { return nil }
+        return manager.characterIndexForGlyph(at: glyphIndex)
     }
     
     // MARK: - Actions
-    func singleTap(gesture: UITapGestureRecognizer) {
-        guard let characterIndex = characterIndex(gesture.locationInView(self)) else {
+    func singleTap(_ gesture: UITapGestureRecognizer) {
+        guard let characterIndex = characterIndex(location: gesture.location(in: self)) else {
             onTouchEmptySpaceHandler?()
             return
         }

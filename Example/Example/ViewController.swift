@@ -17,10 +17,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let config = KUITagConfig(titleColor: UIColor.magentaColor(),
-                                  titleFont: UIFont.boldSystemFontOfSize(15.0),
+        let config = KUITagConfig(titleColor: UIColor.magenta,
+                                  titleFont: UIFont.boldSystemFont(ofSize: 15.0),
                                   titleInsets: UIEdgeInsets(top: 2.0, left: 6.0, bottom: 2.0, right: 6.0),
-                                  backgroundColor: UIColor.yellowColor(),
+                                  backgroundColor: UIColor.yellow,
                                   cornerRadius: 4.0,
                                   borderWidth: 0.0,
                                   borderColor: nil,
@@ -44,19 +44,19 @@ class ViewController: UIViewController {
             print("empty")
         }
         
-        tagLabel.add(KUITag(title: "#테스트", config: config))
-        tagLabel.add(KUITag(title: "#테스트1", config: config))
-        tagLabel.add(KUITag(title: "#테스트2", config: config))
-        tagLabel.add(KUITag(title: "#테스트3", config: config))
-        tagLabel.add(KUITag(title: "#테스트4", config: config))
-        tagLabel.add(KUITag(title: "#테스트5", config: config))
-        tagLabel.add(KUITag(title: "#테스트6", config: config))
-        tagLabel.add(KUITag(title: "#테스트7", config: config))
-        tagLabel.add(KUITag(title: "#테스트8", config: config))
-        tagLabel.add(KUITag(title: "#테스트9", config: config))
-        tagLabel.add(KUITag(title: "#테스트10", config: config))
-        tagLabel.add(KUITag(title: "#테스트11", config: config))
-        tagLabel.add(KUITag(title: "#clean", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트1", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트2", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트3", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트4", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트5", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트6", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트7", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트8", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트9", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트10", config: config))
+        tagLabel.add(tag: KUITag(title: "#테스트11", config: config))
+        tagLabel.add(tag: KUITag(title: "#clean", config: config))
         tagLabel.refresh()
     }
 
