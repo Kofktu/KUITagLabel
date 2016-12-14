@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KUITagLabel"
-  s.version      = "1.0.5"
+  s.version      = "1.5.0"
   s.summary      = "TagLabel support for Dynamic Height"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "TagLabel support for Dynamic Height for Swift 2.3"
+  s.description  = "TagLabel support for Dynamic Height for Swift"
 
   s.homepage     = "https://github.com/Kofktu/KUITagLabel"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
