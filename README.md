@@ -3,6 +3,13 @@
 
 ![alt tag](ScreenShot/Sample.png)
 
+## Requirements
+
+- iOS 8.0+
+- Xcode 8.0
+- Swift 3.0 (>= 1.5.0)
+- Swift 2.3 (1.0.5)
+
 ## Example
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -36,12 +43,6 @@ tagLabel.refresh()
 ## Authors
 
 Taeun Kim (kofktu), <kofktu@gmail.com>
-
-## Requirements
-
-- iOS 8.0+
-- Xcode 8.0
-- Swift 2.3
 
 ## License
 
