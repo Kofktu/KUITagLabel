@@ -13,6 +13,8 @@
 		C373FB3D1D92BBD700A27FE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C373FB3C1D92BBD700A27FE5 /* Assets.xcassets */; };
 		C373FB401D92BBD700A27FE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C373FB3E1D92BBD700A27FE5 /* LaunchScreen.storyboard */; };
 		C373FB4B1D92BBD700A27FE5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C373FB4A1D92BBD700A27FE5 /* ExampleUITests.swift */; };
+		C37A9E731E9373AD00058F1A /* KUITagLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E693101D936E5A006B7863 /* KUITagLabel.framework */; };
+		C37A9E751E9373BA00058F1A /* KUITagLabel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E693101D936E5A006B7863 /* KUITagLabel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +25,13 @@
 			remoteGlobalIDString = C373FB311D92BBD700A27FE5;
 			remoteInfo = Example;
 		};
+		C37A9E761E9373BA00058F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3E6930B1D936E59006B7863 /* KUITagLabel.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C3E692F91D936DFB006B7863;
+			remoteInfo = KUITagLabel;
+		};
 		C3E6930F1D936E5A006B7863 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C3E6930B1D936E59006B7863 /* KUITagLabel.xcodeproj */;
@@ -31,6 +40,20 @@
 			remoteInfo = KUITagLabel;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C37A9E781E9373BA00058F1A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C37A9E751E9373BA00058F1A /* KUITagLabel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C373FB321D92BBD700A27FE5 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37A9E731E9373AD00058F1A /* KUITagLabel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,10 +147,12 @@
 				C373FB2E1D92BBD700A27FE5 /* Sources */,
 				C373FB2F1D92BBD700A27FE5 /* Frameworks */,
 				C373FB301D92BBD700A27FE5 /* Resources */,
+				C37A9E781E9373BA00058F1A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C37A9E771E9373BA00058F1A /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -158,12 +184,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Kofktu;
 				TargetAttributes = {
 					C373FB311D92BBD700A27FE5 = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = KLVLNTBFM4;
+						ProvisioningStyle = Manual;
 					};
 					C373FB451D92BBD700A27FE5 = {
 						CreatedOnToolsVersion = 8.0;
@@ -253,6 +280,11 @@
 			target = C373FB311D92BBD700A27FE5 /* Example */;
 			targetProxy = C373FB471D92BBD700A27FE5 /* PBXContainerItemProxy */;
 		};
+		C37A9E771E9373BA00058F1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KUITagLabel;
+			targetProxy = C37A9E761E9373BA00058F1A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -293,6 +325,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -342,6 +375,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -369,11 +403,15 @@
 		C373FB501D92BBD700A27FE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KLVLNTBFM4;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.homefactory.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2a18c620-5202-4e02-ad1e-40c44f11f8a8";
+				PROVISIONING_PROFILE_SPECIFIER = Develop_Provising;
 				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
@@ -381,11 +419,14 @@
 		C373FB511D92BBD700A27FE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.homefactory.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
