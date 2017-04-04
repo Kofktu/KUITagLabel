@@ -17,13 +17,27 @@ public struct KUITag: Equatable {
     public var title: String
     public var userInfo: [NSObject: AnyObject]?
     var config: KUITagConfig
+    var accessibilityElement: KUITagAccessibilityElement?
     
     public init(title: String,
                 userInfo: [NSObject: AnyObject]? = nil,
-                config: KUITagConfig) {
+                config: KUITagConfig,
+                accessibilityElement: KUITagAccessibilityElement? = nil) {
         self.title = title
         self.userInfo = userInfo
         self.config = config
+        self.accessibilityElement = accessibilityElement
+    }
+}
+
+public struct KUITagAccessibilityElement {
+    public var title: String
+    public var traits: UIAccessibilityTraits
+    
+    public init(title: String,
+                traits: UIAccessibilityTraits = UIAccessibilityTraitButton) {
+        self.title = title
+        self.traits = traits
     }
 }
 
@@ -84,6 +98,11 @@ open class KUITagLabel: UILabel {
     open override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        setupAccessibility()
     }
     
     // MARK: - Public
@@ -157,7 +176,7 @@ open class KUITagLabel: UILabel {
         refresh()
     }
     
-    fileprivate func characterIndex(location: CGPoint) -> Int? {
+    fileprivate func generateContext() -> (NSTextContainer, NSLayoutManager, NSTextStorage)? {
         guard let attr = attributedText, attr.length > 0 else { return nil }
         
         let container = NSTextContainer(size: frame.size)
@@ -170,6 +189,48 @@ open class KUITagLabel: UILabel {
         
         let storage = NSTextStorage(attributedString: attr)
         storage.addLayoutManager(manager)
+        
+        return (container, manager, storage)
+    }
+    
+    fileprivate func setupAccessibility() {
+        guard let attr = attributedText, attr.length > 0 && !tags.isEmpty else { return }
+        guard let context = generateContext() else { return }
+        
+        let container = context.0
+        let manager = context.1
+        
+        var elements = [UIAccessibilityElement]()
+        attr.enumerateAttributes(in: NSRange(location: 0, length: attr.length), options: []) { (attribute, range, stop) in
+            guard let _ = attribute["NSAttachment"] as? NSTextAttachment else { return }
+            let boundingRect = manager.boundingRect(forGlyphRange: range, in: container)
+            let boundingRectInWindowCoordinates = convert(boundingRect, to: nil)
+            var boundingRectInScreenCoordinates = window?.convert(boundingRectInWindowCoordinates, to: nil) ?? boundingRectInWindowCoordinates
+            let tag = tags[range.location]
+            let insets = tag.config.insets
+            
+            // fix bounding rect
+            boundingRectInScreenCoordinates.origin.x -= insets.left
+            boundingRectInScreenCoordinates.size.width -= insets.right
+            boundingRectInScreenCoordinates.origin.y -= insets.top
+            boundingRectInScreenCoordinates.size.height -= (insets.bottom + lineSpace)
+            
+            let element = UIAccessibilityElement(accessibilityContainer: self)
+            element.accessibilityFrame = boundingRectInScreenCoordinates
+            element.accessibilityLabel = tag.accessibilityElement?.title ?? tag.title
+            element.accessibilityTraits = tag.accessibilityElement?.traits ?? UIAccessibilityTraitButton
+            elements.append(element)
+        }
+        
+        isAccessibilityElement = false
+        accessibilityElements = elements
+    }
+    
+    fileprivate func characterIndex(location: CGPoint) -> Int? {
+        guard let context = generateContext() else { return nil }
+        
+        let container = context.0
+        let manager = context.1
         
         let glyphRange = manager.glyphRange(for: container)
         let textBounds = manager.boundingRect(forGlyphRange: glyphRange, in: container)
