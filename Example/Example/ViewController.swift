@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let config = KUITagConfig(titleColor: UIColor.magenta,
+        let config = KUITagConfig(insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 5.0),
+                                  titleColor: UIColor.magenta,
                                   titleFont: UIFont.boldSystemFont(ofSize: 15.0),
                                   titleInsets: UIEdgeInsets(top: 2.0, left: 6.0, bottom: 2.0, right: 6.0),
                                   backgroundColor: UIColor.yellow,
@@ -30,6 +31,8 @@ class ViewController: UIViewController {
 //                                  titleFont: UIFont.systemFontOfSize(15.0),
 //                                  backgroundColor: UIColor.yellowColor())
 //
+        
+        tagLabel.lineSpace = 10.0
         
         tagLabel.onSelectedHandler = { [weak self] (tag) in
             print("tag : \(tag.title)")
@@ -47,13 +50,13 @@ class ViewController: UIViewController {
         tagLabel.add(tag: KUITag(title: "#테스트", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트1", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트2", config: config))
-        tagLabel.add(tag: KUITag(title: "#테스트3", config: config))
+        tagLabel.add(tag: KUITag(title: "테스트3", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트4", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트5", config: config))
-        tagLabel.add(tag: KUITag(title: "#테스트6", config: config))
+        tagLabel.add(tag: KUITag(title: "테스트6", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트7", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트8", config: config))
-        tagLabel.add(tag: KUITag(title: "#테스트9", config: config))
+        tagLabel.add(tag: KUITag(title: "테스트9", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트10", config: config))
         tagLabel.add(tag: KUITag(title: "#테스트11", config: config))
         tagLabel.add(tag: KUITag(title: "#clean", config: config))
