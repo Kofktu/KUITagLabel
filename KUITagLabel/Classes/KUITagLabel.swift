@@ -153,7 +153,7 @@ open class KUITagLabel: UILabel {
         
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpace
-        attr.addAttributes([NSParagraphStyleAttributeName: style], range: NSMakeRange(0, attr.length))
+        attr.addAttributes([NSAttributedStringKey.paragraphStyle: style], range: NSMakeRange(0, attr.length))
         attributedText = attr
     }
     
@@ -202,7 +202,7 @@ open class KUITagLabel: UILabel {
         
         var elements = [UIAccessibilityElement]()
         attr.enumerateAttributes(in: NSRange(location: 0, length: attr.length), options: []) { (attribute, range, stop) in
-            guard let _ = attribute["NSAttachment"] as? NSTextAttachment else { return }
+            guard let _ = attribute[NSAttributedStringKey.attachment] as? NSTextAttachment else { return }
             let boundingRect = manager.boundingRect(forGlyphRange: range, in: container)
             let boundingRectInWindowCoordinates = convert(boundingRect, to: nil)
             var boundingRectInScreenCoordinates = window?.convert(boundingRectInWindowCoordinates, to: nil) ?? boundingRectInWindowCoordinates
@@ -258,7 +258,7 @@ open class KUITagLabel: UILabel {
     }
     
     // MARK: - Actions
-    func singleTap(_ gesture: UITapGestureRecognizer) {
+    @objc func singleTap(_ gesture: UITapGestureRecognizer) {
         guard let characterIndex = characterIndex(location: gesture.location(in: self)) else {
             onTouchEmptySpaceHandler?()
             return
