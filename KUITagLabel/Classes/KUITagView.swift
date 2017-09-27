@@ -63,7 +63,10 @@ open class KUITagView: UIView {
             style.alignment = .center
             
             let attr = NSAttributedString(string: tag.title,
-                                          attributes: [NSParagraphStyleAttributeName: style, NSFontAttributeName: tag.config.titleFont, NSForegroundColorAttributeName: tag.config.titleColor])
+                                          attributes: [
+                                            NSAttributedStringKey.paragraphStyle: style,
+                                            NSAttributedStringKey.font: tag.config.titleFont,
+                                            NSAttributedStringKey.foregroundColor: tag.config.titleColor])
             label.attributedText = attr
         } else {
             label.attributedText = nil
@@ -71,7 +74,7 @@ open class KUITagView: UIView {
     }
     
     open func fittingSize() -> CGSize {
-        return systemLayoutSizeFitting(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), withHorizontalFittingPriority: UILayoutPriorityFittingSizeLevel, verticalFittingPriority: UILayoutPriorityFittingSizeLevel)
+        return systemLayoutSizeFitting(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), withHorizontalFittingPriority: UILayoutPriority.fittingSizeLevel, verticalFittingPriority: UILayoutPriority.fittingSizeLevel)
     }
     
     open func image() -> UIImage? {

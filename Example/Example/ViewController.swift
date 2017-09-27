@@ -43,7 +43,7 @@ class ViewController: UIViewController {
             }
         }
         
-        tagLabel.onTouchEmptySpaceHandler = { [weak self] () in
+        tagLabel.onTouchEmptySpaceHandler = { () in
             print("empty")
         }
         
